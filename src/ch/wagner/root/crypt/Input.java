@@ -1,6 +1,7 @@
 package ch.wagner.root.crypt;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Input
 {
@@ -14,7 +15,7 @@ public class Input
 			System.out.print(requestMessage);
 			text = ch.wagner.root.crypt.Input.getCharArray();
 
-			if (!Process.inputValid(new String(text), "[^`^]+$"))
+			if (!Input.inputValid(new String(text), "[^`^]+$"))
 				System.out.println("Invalid input. Try again.");
 			else
 				_AllowedToContinue = true;
@@ -35,13 +36,25 @@ public class Input
 			System.out.print(requestMessage);
 			key = ch.wagner.root.crypt.Input.getCharArray();
 
-			if (!Process.inputValid(new String(key), "^[A-Za-z]+$"))
+			if (!Input.inputValid(new String(key), "^[A-Za-z]+$"))
 				System.out.println("Invalid input. Try again.");
 			else
 				_AllowedToContinue = true;
 		}
 
 		return key;
+	}
+
+	private static boolean inputValid (String input, String regex)
+	{
+		boolean returnValue = true;
+
+		final Pattern pattern = Pattern.compile(regex);
+		if (!pattern.matcher(input).matches()) {
+			returnValue = false;
+		}
+
+		return  returnValue;
 	}
 
 	private static String getString ()
@@ -51,7 +64,7 @@ public class Input
 		return scanner.nextLine();
 	}
 
-	public static char[] getCharArray ()
+	private static char[] getCharArray ()
 	{
 		return getString().toCharArray();
 	}

@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class Process
 {
-	public static String getDecryptedText (char[] text, char[] key)
+	public static String decrypt(char[] text, char[] key)
 	{
 		int[] shift = new int[key.length];
 
@@ -32,7 +32,7 @@ public class Process
 		return new String(text);
 	}
 
-	public static String getEncryptedText(char[] text, char[] key)
+	public static String encrypt(char[] text, char[] key)
 	{
 		int[] shift = new int[key.length];
 
@@ -59,17 +59,5 @@ public class Process
 		}
 
 		return new String(text);
-	}
-
-	public static boolean inputValid (String input, String regex)
-	{
-		boolean returnValue = true;
-
-		final Pattern pattern = Pattern.compile(regex);
-		if (!pattern.matcher(input).matches()) {
-			returnValue = false;
-		}
-
-		return  returnValue;
 	}
 }

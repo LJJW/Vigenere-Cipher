@@ -26,8 +26,8 @@ public class Start
 		char[] key = ch.wagner.root.crypt.Input.getKey("Key:\n>");
 
 		if (_Encrypt)
-			System.out.println(ch.wagner.root.crypt.Process.getEncryptedText(text, key));
+			System.out.println(ch.wagner.root.crypt.Process.encrypt(text, key));
 		else
-			System.out.println(ch.wagner.root.crypt.Process.getDecryptedText(text, key));
+			System.out.println(ch.wagner.root.crypt.Process.decrypt(text, key));
 	}
 }
